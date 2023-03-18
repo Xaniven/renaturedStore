@@ -3,6 +3,7 @@ import "./App.scss";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Aboutpage from "./pages/Aboutpage";
+import Homepage from "./pages/Homepage";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -10,7 +11,8 @@ function App() {
   return (
     <div className='App h-auto'>
       <Navbar />
-      <Aboutpage />
+      {/* <Aboutpage /> */}
+      <Homepage />
       <Footer />
     </div>
   );
