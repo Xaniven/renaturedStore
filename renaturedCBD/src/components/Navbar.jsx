@@ -13,7 +13,7 @@ function Navbar() {
   return (
     <>
       <nav className='max-w-[100vw] h-[15vh] z-3 bg-slate-500 top-0 border-b-4 border-amber-800 shadow-slate-600 shadow-xl overflow-hidden'>
-        <div className='fs-menu h-[100%] max-w-[100vw] flex justify-between lg:justify-around'>
+        <div className='fs-menu h-[100%] max-w-[100vw] flex justify-between lg:justify-around '>
           <div
             className='Hamburg lg:hidden space-y-2 absolute pl-6 pt-10'
             onClick={() => setIsNavOpen((prev) => !prev)}
@@ -89,7 +89,7 @@ function Navbar() {
             </div>
           </section>
 
-          <div className='left-wrap lg:basis-2/5 hidden lg:flex justify-between p-8 gap-6'>
+          <div className='left-wrap basis-4/5 hidden lg:flex justify-between p-8 gap-6'>
             <button className={buttonStyles}>
               <NavLink
                 to='/'
@@ -130,9 +130,22 @@ function Navbar() {
               className='absolute top-[-14px] h-[20vh]  hover:animate-pulse drop-shadow-xl shadow-slate-600 cursor-pointer '
             />
           </div>
-          <div className='right-wrap lg:basis-2/5 hidden lg:flex justify-between p-8 gap-6'>
-            <button className={buttonStyles}>Login</button>
-            <button className={buttonStyles}>Sign-Up</button>
+          <div className='right-wrap basis-4/5 hidden lg:flex justify-between p-8 gap-6'>
+            <div className=''>
+              <button className={buttonStyles.toString() + "relative peer h-[100%] "}>Login</button>
+              <div class='hidden absolute peer-hover:block hover:flex w-[200px] flex-col bg-white drop-shadow-lg z-50 p-4'>
+                build login-component
+              </div>
+            </div>
+            <div className=''>
+              <button className={buttonStyles.toString() + "relative peer h-[100%] "}>
+                Sign-Up
+              </button>
+              <div class='hidden absolute peer-hover:block hover:flex w-[200px] flex-col bg-white drop-shadow-lg z-50 p-4'>
+                build signUp-component
+              </div>
+            </div>
+
             <div className='relative cartCount p-2 mr-4 hover:animate-bounce'>
               <button>
                 <GiShoppingCart size='48px' className={" " + buttonStyles.toString()} />
@@ -142,11 +155,11 @@ function Navbar() {
               </span>
             </div>
           </div>
-          <div className='mobile-cart lg:hidden absolute right-0 pt-8 pr-6'>
+          <div className='mobile-cart lg:hidden  absolute right-0 pt-8 pr-6'>
             <button>
               <GiShoppingCart
                 size='40px'
-                className={"hover:animate-bounce text-center " + buttonStyles.toString()}
+                className={"hover:animate-bounce text-center relative  " + buttonStyles.toString()}
               />
               Cart: 0
             </button>
