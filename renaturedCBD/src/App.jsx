@@ -1,5 +1,4 @@
 import "./App.scss";
-import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import {
   createBrowserRouter,
@@ -11,6 +10,8 @@ import {
 import Aboutpage from "./pages/Aboutpage";
 import Homepage from "./pages/Homepage";
 import ErrorPage from "./pages/Errorpage";
+import Createuser from "./pages/Createuser";
+import Storepage from "./pages/Storepage";
 
 function App() {
   const router = createBrowserRouter([
@@ -32,7 +33,12 @@ function App() {
         },
         {
           path: "store",
-          element: <Aboutpage />,
+          element: <Storepage />,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: "newuser",
+          element: <Createuser />,
           errorElement: <ErrorPage />,
         },
       ],

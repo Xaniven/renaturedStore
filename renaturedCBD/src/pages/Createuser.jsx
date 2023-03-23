@@ -2,7 +2,7 @@ import React from "react";
 import bgMain from "../img/coffee-1255164.jpg";
 import logoR from "../img/logo-round.png";
 
-export default function Storepage() {
+export default function Createuser() {
   return (
     <div className='main-container container flex z-0 justify-center min-h-[100vh] max-w-[100vw] relative text-center'>
       <img src={bgMain} alt='' className='absolute min-h-[100%] w-[100vw] object-cover' />
@@ -10,7 +10,7 @@ export default function Storepage() {
         <div className='flex justify-center p-2 mb-4'>
           <img src={logoR} height='300px' width='300px' alt='' />
         </div>
-        <h1>Store page</h1>
+        <h1>Create new account</h1>
       </div>
     </div>
   );

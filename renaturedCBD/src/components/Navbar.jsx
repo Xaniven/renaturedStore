@@ -131,20 +131,51 @@ function Navbar() {
             />
           </div>
           <div className='right-wrap basis-4/5 hidden lg:flex justify-between p-8 gap-6'>
-            <div className=''>
-              <button className={buttonStyles.toString() + "relative peer h-[100%] "}>Login</button>
-              <div class='hidden absolute peer-hover:block hover:flex w-[200px] flex-col bg-white drop-shadow-lg z-50 p-4'>
-                build login-component
+            <div className='dropdown'>
+              <button className={buttonStyles.toString() + "relative peer h-[100%]"}>Login</button>
+              <div class='hidden absolute peer-hover:block hover:flex w-[auto] h-auto  drop-shadow-lg z-50 p-4 bg-slate-400 '>
+                <form action='submit' className=''>
+                  <div className='flex flex-col p-2 gap-4 '>
+                    <label htmlFor='email'>Email:</label>
+                    <input
+                      required
+                      type='email'
+                      name='log-in email'
+                      className='border-2 border-black pl-2 '
+                      id=''
+                    />
+                    <label htmlFor='password'>Password:</label>
+                    <input
+                      required
+                      type='password'
+                      name='log-in password'
+                      className='border-2 border-black pl-2'
+                      id=''
+                    />
+                    <button className='m-2 border-green-800 border-2 p-2 rounded-lg  shadow-xl active:bg-green-600 '>
+                      Log-in
+                    </button>
+                    <Link
+                      to='newuser'
+                      className='text-center underline underline-offset-1 hover:text-green-800 pointer-events-auto'
+                    >
+                      Create an account here!
+                    </Link>
+                  </div>
+                </form>
               </div>
             </div>
-            <div className=''>
-              <button className={buttonStyles.toString() + "relative peer h-[100%] "}>
-                Sign-Up
-              </button>
-              <div class='hidden absolute peer-hover:block hover:flex w-[200px] flex-col bg-white drop-shadow-lg z-50 p-4'>
-                build signUp-component
-              </div>
-            </div>
+            <button className={buttonStyles}>
+              {" "}
+              <NavLink
+                to='newuser'
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "text-green-600 text-2xl" : ""
+                }
+              >
+                Sign-up
+              </NavLink>
+            </button>
 
             <div className='relative cartCount p-2 mr-4 hover:animate-bounce'>
               <button>
