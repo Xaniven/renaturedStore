@@ -1,9 +1,10 @@
 import { useState, useContext } from "react";
 import { FireContext } from "./Firebasecontext";
+import { IoLeafSharp } from "react-icons/io5";
 import "./nav.scss";
 import logoMain from "../img/logo-main.png";
 import { GiShoppingCart } from "react-icons/gi";
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink, Link } from "react-router-dom";
 import Footer from "./Footer";
 import LoginAcc from "./LoginAcc";
 
@@ -92,7 +93,14 @@ function Navbar() {
                   </NavLink>
                 </li>
               </ul>
-              more blah
+              <div className='flex w-[100%] justify-evenly bg-slate-600 p-2'>
+                <Link to='/' className='hover:text-green-600'>
+                  <IoLeafSharp size='24px' /> Log-in
+                </Link>
+                <Link to='newaccount' className='hover:text-green-600'>
+                  <IoLeafSharp size='24px' /> Create Account
+                </Link>
+              </div>
             </div>
           </section>
 
@@ -138,16 +146,16 @@ function Navbar() {
             />
           </div>
           <div className='right-wrap basis-4/5 hidden lg:flex justify-between p-8 gap-6'>
-            <div className='dropdown'>
-              <button className={buttonStyles.toString() + "relative peer h-[100%]"}>
+            <div className='dropdown h-[100%] w-[100%]'>
+              <button className={buttonStyles.toString() + "relative peer h-[100%] w-[100%] top-0"}>
                 {user == null ? "Log-In" : "Account"}
               </button>
-              <div class='hidden absolute peer-hover:block hover:flex w-[auto] h-auto  drop-shadow-lg z-50 p-4 bg-slate-400 '>
+              <div class='hidden absolute focus-within:block peer-hover:block hover:flex w-[auto] h-auto  drop-shadow-lg z-50 p-4 bg-slate-400 '>
                 <LoginAcc userState={user} />
               </div>
             </div>
             <button
-              className={buttonStyles}
+              className={"w-[100%] " + buttonStyles.toString()}
               onClick={() => {
                 user != null ? signOutUser(auth) : console.log(user);
               }}
@@ -176,8 +184,9 @@ function Navbar() {
           </div>
         </div>
       </nav>
-      {console.log(user)}
-      <Outlet />
+      <div className='App max-w-[100vw]'>
+        <Outlet />
+      </div>
       <Footer />
     </>
   );

@@ -6,6 +6,7 @@ import Homepage from "./pages/Homepage";
 import ErrorPage from "./pages/Errorpage";
 import Createuser from "./pages/Createuser";
 import Storepage from "./pages/Storepage";
+import NewUser from "./components/NewUser";
 
 function App() {
   //Router
@@ -33,7 +34,7 @@ function App() {
         },
         {
           path: "newuser",
-          element: <Createuser />,
+          element: <NewUser />,
           errorElement: <ErrorPage />,
         },
       ],

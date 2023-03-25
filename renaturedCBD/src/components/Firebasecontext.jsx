@@ -6,7 +6,8 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { app } from "./firebase";
+import { doc, setDoc } from "firebase/firestore";
+import { app, db } from "./firebase";
 
 export const FireContext = createContext();
 export function FireProvider({ children }) {
@@ -22,13 +23,20 @@ export function FireProvider({ children }) {
   });
 
   // Call createUser firebase function, create user database entry uid=DB entry ID
-  function createNewUser(email, password) {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {})
+  async function createNewUser(email, password) {
+    await createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        //create DB entry for each create user
+        setDoc(doc(db, "Users", userCredential.user.uid), {
+          uid: userCredential.user.uid,
+          userName: userCredential.user.displayName,
+          emailAd: userCredential.user.email,
+          metaData: userCredential.user.metadata,
+        });
+      })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
       });
   }
 

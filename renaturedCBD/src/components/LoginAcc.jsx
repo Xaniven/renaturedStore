@@ -5,7 +5,7 @@ import { FireContext } from "./Firebasecontext";
 export default function LoginAcc(userState) {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { signInEmail } = useContext(FireContext);
+  const { signInEmail, user } = useContext(FireContext);
   if (userState.userState == null)
     //Log-in Component
     return (
@@ -34,7 +34,7 @@ export default function LoginAcc(userState) {
               e.preventDefault();
               signInEmail(emailRef.current.value, passwordRef.current.value);
             }}
-            className='m-2 border-green-800 border-2 p-2 rounded-lg  shadow-xl active:bg-green-600 '
+            className='m-2 border-green-800 border-2 p-2 rounded-lg  shadow-xl active:bg-green-800 hover:bg-green-600'
           >
             Log-in
           </button>
@@ -49,6 +49,6 @@ export default function LoginAcc(userState) {
     );
   //TODO:Basic user profile profile picture, name, email, goto acccount button
   else if (userState.userState != null) {
-    return <>logged in</>;
+    return <>Welcome: {user.email}</>;
   }
 }

@@ -32,7 +32,7 @@ export default function Footer() {
       </div>
       <p className='absolute bottom-0 text-xl underline p-4 '>
         {" "}
-        <a href=''> Re:Natured 2023</a>
+        <a href='/'> Re:Natured 2023</a>
       </p>
     </section>
   );
