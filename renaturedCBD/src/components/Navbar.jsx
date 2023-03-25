@@ -1,16 +1,18 @@
-import { useState, useRef, useContext } from "react";
+import { useState, useContext } from "react";
 import { FireContext } from "./Firebasecontext";
 import "./nav.scss";
 import logoMain from "../img/logo-main.png";
 import { GiShoppingCart } from "react-icons/gi";
-import { Outlet, Link, NavLink } from "react-router-dom";
+import { Outlet, NavLink } from "react-router-dom";
 import Footer from "./Footer";
 import LoginAcc from "./LoginAcc";
+
+//Main layout component => renders nav, router outlet, footer components
 
 function Navbar() {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
-  const { signInEmail, auth, signOutUser, user } = useContext(FireContext);
+  const { auth, signOutUser, user } = useContext(FireContext);
 
   const buttonStyles =
     "underline underline-offset-[3px] hover:text-green-600 hover:scale-110 text-xl drop-shadow-xl shadow-slate-600  ";

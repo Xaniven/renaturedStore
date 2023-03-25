@@ -10,13 +10,18 @@ import { app } from "./firebase";
 
 export const FireContext = createContext();
 export function FireProvider({ children }) {
+  //Firebase auth instance
   const auth = getAuth(app);
+
+  //Current user state object
   const [user, setUser] = useState();
 
+  //Listen for changes to user auth status
   onAuthStateChanged(auth, (user) => {
     setUser(user);
   });
 
+  // Call createUser firebase function, create user database entry uid=DB entry ID
   function createNewUser(email, password) {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {})
@@ -27,6 +32,7 @@ export function FireProvider({ children }) {
       });
   }
 
+  //Call firebase sign in function
   function signInEmail(email, password) {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -38,6 +44,7 @@ export function FireProvider({ children }) {
         console.log(errorCode, errorMessage);
       });
   }
+  //Sign out current user, log it console
   function signOutUser(auth) {
     signOut(auth)
       .then(() => {

@@ -7,6 +7,7 @@ export default function LoginAcc(userState) {
   const passwordRef = useRef();
   const { signInEmail } = useContext(FireContext);
   if (userState.userState == null)
+    //Log-in Component
     return (
       <form className=''>
         <div className='flex flex-col p-2 gap-4 '>
@@ -46,6 +47,7 @@ export default function LoginAcc(userState) {
         </div>
       </form>
     );
+  //TODO:Basic user profile profile picture, name, email, goto acccount button
   else if (userState.userState != null) {
     return <>logged in</>;
   }
