@@ -1,12 +1,6 @@
 import "./App.scss";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-  RouterProvider,
-  Link,
-} from "react-router-dom";
 import Aboutpage from "./pages/Aboutpage";
 import Homepage from "./pages/Homepage";
 import ErrorPage from "./pages/Errorpage";
@@ -14,6 +8,7 @@ import Createuser from "./pages/Createuser";
 import Storepage from "./pages/Storepage";
 
 function App() {
+  //Router
   const router = createBrowserRouter([
     {
       path: "/",
@@ -44,11 +39,7 @@ function App() {
       ],
     },
   ]);
-  return (
-    <>
-      <RouterProvider router={router} />
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

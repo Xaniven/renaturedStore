@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useState, useRef, useContext } from "react";
+import { FireContext } from "./Firebasecontext";
 import "./nav.scss";
 import logoMain from "../img/logo-main.png";
 import { GiShoppingCart } from "react-icons/gi";
 import { Outlet, Link, NavLink } from "react-router-dom";
 import Footer from "./Footer";
+import LoginAcc from "./LoginAcc";
 
 function Navbar() {
   const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const { signInEmail, auth, signOutUser, user } = useContext(FireContext);
+
   const buttonStyles =
     "underline underline-offset-[3px] hover:text-green-600 hover:scale-110 text-xl drop-shadow-xl shadow-slate-600  ";
 
@@ -132,49 +137,21 @@ function Navbar() {
           </div>
           <div className='right-wrap basis-4/5 hidden lg:flex justify-between p-8 gap-6'>
             <div className='dropdown'>
-              <button className={buttonStyles.toString() + "relative peer h-[100%]"}>Login</button>
+              <button className={buttonStyles.toString() + "relative peer h-[100%]"}>
+                {user == null ? "Log-In" : "Account"}
+              </button>
               <div class='hidden absolute peer-hover:block hover:flex w-[auto] h-auto  drop-shadow-lg z-50 p-4 bg-slate-400 '>
-                <form action='submit' className=''>
-                  <div className='flex flex-col p-2 gap-4 '>
-                    <label htmlFor='email'>Email:</label>
-                    <input
-                      required
-                      type='email'
-                      name='log-in email'
-                      className='border-2 border-black pl-2 '
-                      id=''
-                    />
-                    <label htmlFor='password'>Password:</label>
-                    <input
-                      required
-                      type='password'
-                      name='log-in password'
-                      className='border-2 border-black pl-2'
-                      id=''
-                    />
-                    <button className='m-2 border-green-800 border-2 p-2 rounded-lg  shadow-xl active:bg-green-600 '>
-                      Log-in
-                    </button>
-                    <Link
-                      to='newuser'
-                      className='text-center underline underline-offset-1 hover:text-green-800 pointer-events-auto'
-                    >
-                      Create an account here!
-                    </Link>
-                  </div>
-                </form>
+                <LoginAcc userState={user} />
               </div>
             </div>
-            <button className={buttonStyles}>
+            <button
+              className={buttonStyles}
+              onClick={() => {
+                user != null ? signOutUser(auth) : console.log(user);
+              }}
+            >
               {" "}
-              <NavLink
-                to='newuser'
-                className={({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? "text-green-600 text-2xl" : ""
-                }
-              >
-                Sign-up
-              </NavLink>
+              {user != null ? "Sign-out" : "Create Account"}
             </button>
 
             <div className='relative cartCount p-2 mr-4 hover:animate-bounce'>
@@ -197,6 +174,7 @@ function Navbar() {
           </div>
         </div>
       </nav>
+      {console.log(user)}
       <Outlet />
       <Footer />
     </>

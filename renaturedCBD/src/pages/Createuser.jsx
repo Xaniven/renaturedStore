@@ -10,7 +10,7 @@ export default function Createuser() {
         <div className='flex justify-center p-2 mb-4'>
           <img src={logoR} height='300px' width='300px' alt='' />
         </div>
-        <h1>Create new account</h1>
+        <h1 className=' text-3xl text-gray-400  '>Create new account</h1>
       </div>
     </div>
   );
