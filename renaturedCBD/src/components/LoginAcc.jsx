@@ -49,6 +49,12 @@ export default function LoginAcc(userState) {
     );
   //TODO:Basic user profile profile picture, name, email, goto acccount button
   else if (userState.userState != null) {
-    return <>Welcome: {user.email}</>;
+    return (
+      <>
+        <div className='flex-col text-center'>
+          <h1>Welcome:</h1> {user.email}
+        </div>
+      </>
+    );
   }
 }

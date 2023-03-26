@@ -1,10 +1,8 @@
-import "./App.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Aboutpage from "./pages/Aboutpage";
 import Homepage from "./pages/Homepage";
 import ErrorPage from "./pages/Errorpage";
-import Createuser from "./pages/Createuser";
 import Storepage from "./pages/Storepage";
 import NewUser from "./components/NewUser";
 
@@ -34,6 +32,11 @@ function App() {
         },
         {
           path: "newuser",
+          element: <NewUser />,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: "account",
           element: <NewUser />,
           errorElement: <ErrorPage />,
         },

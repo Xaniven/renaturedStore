@@ -5,7 +5,7 @@ import logoR from "../img/logo-round.png";
 export default function ErrorPage() {
   const error = useRouteError();
   console.error(error);
-
+  document.title = "Error";
   return (
     <>
       <div

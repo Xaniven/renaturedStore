@@ -3,6 +3,7 @@ import bgMain from "../img/coffee-1255164.jpg";
 import logoR from "../img/logo-round.png";
 
 export default function Storepage() {
+  document.title = "Shop";
   return (
     <div className='main-container container flex z-0 justify-center min-h-[100vh] max-w-[100vw] relative text-center'>
       <img src={bgMain} alt='' className='absolute min-h-[100%] w-[100vw] object-cover' />

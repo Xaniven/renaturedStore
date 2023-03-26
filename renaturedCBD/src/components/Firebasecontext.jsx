@@ -32,6 +32,7 @@ export function FireProvider({ children }) {
           userName: userCredential.user.displayName,
           emailAd: userCredential.user.email,
           metaData: userCredential.user.metadata,
+          orders: {},
         });
       })
       .catch((error) => {
