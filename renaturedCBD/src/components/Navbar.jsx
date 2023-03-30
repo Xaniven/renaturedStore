@@ -11,11 +11,12 @@ import logoMain from "../img/logo-main.png";
 //Main layout component => renders nav, router outlet, footer components
 
 function Navbar() {
+  //State Vars
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-
+  //Context var/functions
   const { auth, signOutUser, user } = useContext(FireContext);
-
+  //button sytles var to reduce code clutter
   const buttonStyles =
     "underline underline-offset-[3px] hover:text-green-600 hover:scale-110 text-xl drop-shadow-xl shadow-slate-600  ";
 
@@ -24,7 +25,7 @@ function Navbar() {
       <nav className='max-w-[100vw] h-[15vh] z-3 bg-slate-500 top-0 border-b-4 border-amber-800 shadow-slate-600 shadow-xl overflow-hidden'>
         <div className='fs-menu h-[100%] max-w-[100vw] flex justify-between lg:justify-around '>
           <div
-            className='Hamburg lg:hidden space-y-2 absolute pl-6 pt-10'
+            className='Hamburg lg:hidden space-y-2 flex flex-col justify-center pl-4 w-[10vw] h-[15vh]'
             onClick={() => setIsNavOpen((prev) => !prev)}
           >
             <span className='block h-1 w-8 animate-pulse bg-green-600'></span>
@@ -179,21 +180,24 @@ function Navbar() {
                   className={"hover:animate-bounce " + buttonStyles.toString()}
                 />
               </button>
-              <span className='absolute bottom-0 m-1  left-8 h-6 w-6  bg-green-600 text-center rounded-3xl'>
+              <span className='absolute bottom-0 m-1 p-1  left-8 h-8 w-8  bg-green-600 text-center rounded-3xl'>
                 99+
               </span>
             </div>
           </div>
-          <div id='Cart' className={isCartOpen ? "showCartNav" : "hideCartNav"}>
+          <div id='Cart' className={isCartOpen ? "showCartNav h-[100%] flex " : "hideCartNav"}>
             <h2>Cart:</h2>
           </div>
-          <div className='mobile-cart lg:hidden  absolute right-0 pt-8 pr-6'>
+          <div
+            onClick={() => setIsCartOpen((prev) => !prev)}
+            className='mobile-cart lg:hidden  flex flex-col right-0 justify-center  h-[15vh] pr-4'
+          >
             <button>
               <GiShoppingCart
                 size='40px'
                 className={"hover:animate-bounce text-center relative  " + buttonStyles.toString()}
               />
-              Cart: 0
+              Cart:0
             </button>
           </div>
         </div>

@@ -2,18 +2,20 @@ import { useContext } from "react";
 import { FireContext } from "../components/Firebasecontext";
 
 export default function Account() {
-  const { user } = useContext(FireContext);
   document.title = "Account Settings";
+  const { user } = useContext(FireContext);
   return (
     <div className='grid justify-items-center h-[90vh] mt-24'>
       <div className='grid justify-items-center bg-slate-600 h-fit bg-opacity-[85%] w-[80%] mt-8 rounded-xl shadow-2xl '>
-        <div className=' flex p-4 gap-6'>
-          <h1 className='text-4xl p-6 border-r-4 border-green-600'>Account Settings</h1>
+        <div className=' lg:flex p-4 gap-6'>
+          <h1 className='text-4xl p-6 border-b-4 lg:border-r-4 lg:border-b-0 border-green-600'>
+            Account Settings
+          </h1>
           <form
             onSubmit={(e) => {
               e.preventDefault();
             }}
-            className='flex flex-col p-6 gap-4 w-[40vw]'
+            className='flex flex-col p-6 gap-4 lg:w-[40vw]'
           >
             <label htmlFor='text'>Change Username : {user.displayName}</label>
             <input

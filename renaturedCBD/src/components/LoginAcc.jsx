@@ -68,15 +68,15 @@ export default function LoginAcc(userState) {
           </div>
           <div className={edit ? " grid border-2 border-black" : "hidden"}>
             <label htmlFor='pfp'>
-              Upload New Profile Picture <br /> <span className='text-xs'>3mb limit</span>
+              Upload New Profile Picture <br /> <span className='text-xs'>( 3mb limit )</span>
             </label>
-            <input type='file' name='' id='pfp' />
+            <input type='file' id='pfp' />
           </div>
           <button
             onClick={() => setEdit(!edit)}
             className='underline text-green-800 hover:text-green-700 cursor-pointer text-xs'
           >
-            {edit ? "Cancel" : "Edit Profile"}
+            {edit ? "Cancel" : "Quick Edit"}
           </button>
           <p className='bg-slate-300 rounded-xl p-2'>
             Welcome: {user.displayName == undefined ? "User" : user.displayName}

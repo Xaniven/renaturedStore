@@ -38,7 +38,7 @@ export default function NewUser() {
             } else {
             }
           }}
-          className='flex flex-col p-6 gap-4 w-[60vw]'
+          className='flex flex-col p-6 gap-4 lg:w-[60vw]'
         >
           <label htmlFor='email'>Email Address:</label>
           <input required ref={emailSignUp} type='email' name='email' id='email' />
