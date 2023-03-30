@@ -5,6 +5,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  updateProfile,
+  sendEmailVerification,
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { app, db } from "./firebase";
@@ -29,23 +31,42 @@ export function FireProvider({ children }) {
         //create DB entry for each create user
         setDoc(doc(db, "Users", userCredential.user.uid), {
           uid: userCredential.user.uid,
+          userType: "user",
           userName: userCredential.user.displayName,
           emailAd: userCredential.user.email,
           metaData: userCredential.user.metadata,
           orders: {},
         });
+        //Send verification email
+        sendEmailVerification(auth.currentUser);
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
       });
   }
-
+  //UserFunctions
   //Call firebase sign in function
   function signInEmail(email, password) {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log(auth.currentUser);
+      })
+      .catch((error) => {
+        if (error.code == "auth/wrong-password") {
+          document.getElementById("log-in-password").classList.add("border-red-600");
+          document.getElementById("log-in-pass").innerHTML = "Incorrect Password";
+        }
+        console.log(error.code);
+        console.log(error.message);
+      });
+  }
+  //update Username
+  function updateUserProfile(newName) {
+    console.log(newName);
+    updateProfile(user, { displayName: newName })
+      .then(() => {
+        alert("Username changed to: " + newName);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -66,7 +87,9 @@ export function FireProvider({ children }) {
   }
 
   return (
-    <FireContext.Provider value={{ signInEmail, createNewUser, auth, signOutUser, user }}>
+    <FireContext.Provider
+      value={{ signInEmail, createNewUser, auth, signOutUser, user, updateUserProfile }}
+    >
       {children}
     </FireContext.Provider>
   );

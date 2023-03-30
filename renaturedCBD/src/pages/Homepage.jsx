@@ -3,7 +3,7 @@ import { IoLeafSharp } from "react-icons/io5";
 function Homepage() {
   document.title = "Re:Natured!";
   return (
-    <div className='h-auto w-[auto] flex  '>
+    <div className='h-auto max-w-[100vw] flex  '>
       <div className='left-side w-0 lg:w-[40vw] min-h-[155vh] lg:ml-8 lg:p-4 lg:m-6 flex-row justify-evenly z-20 lg:z-0'>
         <section className='flex justify-evenly relative z-20 lg:z-0 p-6 my-6 min-h-[60vh] w-[100vw] lg:w-[93vw] shadow-2xl bg-slate-600  bg-opacity-80  border-green-800 border-4 rounded-2xl '>
           <div className='w-[100%] text-center lg:text-left'>
@@ -11,8 +11,9 @@ function Homepage() {
               <span className='text-green-700'>Re</span>
               <span className=' text-amber-900'>
                 Natured
-                <span className=' absolute text-2xl'>™</span>
-              </span>{" "}
+                <span className=' absolute text-3xl'>™</span>
+              </span>
+              {"  "}
               Coffee & Teas
             </h1>
             <p className='z-20 w-auto text-center lg:text-left mb-6 lg:w-[60vw] text-2xl'>
@@ -40,7 +41,7 @@ function Homepage() {
         </section>
         <section className=' relative z-20 p-8 my-6 h-[fit] w-[96.5vw] lg:w-[60vw] shadow-2xl bg-slate-500 bg-opacity-80 border-green-800 border-4 rounded-2xl '>
           <h1 className=' text-4xl mb-8 z-20'>"Terp Brew" (Terpene Infused Coffees)</h1>
-          <p className='w-[60vw]'>
+          <p className='w-[55vw]'>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel maxime saepe earum
             perferendis nisi reprehenderit doloremque provident excepturi porro tempora temporibus
             necessitatibus, dignissimos expedita officia?

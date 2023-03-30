@@ -12,6 +12,7 @@ import logoMain from "../img/logo-main.png";
 
 function Navbar() {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const { auth, signOutUser, user } = useContext(FireContext);
 
@@ -152,14 +153,14 @@ function Navbar() {
                   {user == null ? "Log-In" : "Account"}
                 </Link>
               </button>
-              <div className='hidden absolute focus-within:block peer-hover:block hover:flex w-[auto] h-auto  drop-shadow-lg z-50 p-4 bg-slate-400 '>
+              <div className='hidden absolute focus-within:block peer-hover:block hover:flex right-[15vw] top-[11vh] w-[auto] h-auto  drop-shadow-lg z-50 p-4 bg-slate-400 rounded-lg'>
                 <LoginAcc userState={user} />
               </div>
             </div>
             <button className='w-[100%] '>
               <Link
                 to={user == null ? "newUser" : ""}
-                className={"w-[100%] h-[100%] " + buttonStyles.toString()}
+                className={"min-w-[100%] h-[100%] " + buttonStyles.toString()}
                 onClick={() => {
                   user != null ? signOutUser(auth) : console.log(user);
                 }}
@@ -168,14 +169,23 @@ function Navbar() {
                 {user != null ? "Sign-out" : "Create Account"}
               </Link>
             </button>
-            <div className='relative cartCount p-2 mr-4 hover:animate-bounce'>
+            <div
+              onClick={() => setIsCartOpen((prev) => !prev)}
+              className='relative cartCount p-2 mr-4 '
+            >
               <button>
-                <GiShoppingCart size='48px' className={" " + buttonStyles.toString()} />
+                <GiShoppingCart
+                  size='48px'
+                  className={"hover:animate-bounce " + buttonStyles.toString()}
+                />
               </button>
               <span className='absolute bottom-0 m-1  left-8 h-6 w-6  bg-green-600 text-center rounded-3xl'>
-                0
+                99+
               </span>
             </div>
+          </div>
+          <div id='Cart' className={isCartOpen ? "showCartNav" : "hideCartNav"}>
+            <h2>Cart:</h2>
           </div>
           <div className='mobile-cart lg:hidden  absolute right-0 pt-8 pr-6'>
             <button>

@@ -5,6 +5,7 @@ import Homepage from "./pages/Homepage";
 import ErrorPage from "./pages/Errorpage";
 import Storepage from "./pages/Storepage";
 import NewUser from "./components/NewUser";
+import Account from "./pages/Account";
 
 function App() {
   //Router
@@ -37,7 +38,7 @@ function App() {
         },
         {
           path: "account",
-          element: <NewUser />,
+          element: <Account />,
           errorElement: <ErrorPage />,
         },
       ],

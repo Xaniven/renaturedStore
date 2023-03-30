@@ -9,10 +9,9 @@ export default function NewUser() {
   const { createNewUser } = useContext(FireContext);
   const nav = useNavigate();
 
-  //check both passwordfields match
+  //check if both password fields match
   // refactor using onChange/useState for more responvive UX
   function check_pass() {
-    console.log(document.getElementById("password").value);
     if (
       document.getElementById("password").value == document.getElementById("passwordConfirm").value
     ) {
@@ -28,7 +27,7 @@ export default function NewUser() {
   }
   return (
     <div className='grid justify-items-center h-[85vh]'>
-      <div className=' bg-slate-600 h-fit bg-opacity-80 mt-8 rounded-xl shadow-2xl'>
+      <div className=' bg-slate-600 h-fit bg-opacity-[85%] mt-8 rounded-xl shadow-2xl'>
         <h1 className=' text-center text-4xl p-6'>Create a New Account</h1>
         <form
           onSubmit={(e) => {
