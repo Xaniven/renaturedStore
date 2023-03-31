@@ -87,8 +87,12 @@ export default function LoginAcc(userState) {
             <button
               className='border-black bg-green-800 hover:bg-green-600 border-2 mb-4'
               onClick={(e) => {
-                updateUserProfile(newUN.value);
-                setEdit(false);
+                if (newUN.value != "") {
+                  updateUserProfile(newUN.value);
+                  setEdit(false);
+                } else {
+                  alert("Username Cannot Be Blank");
+                }
               }}
             >
               Save

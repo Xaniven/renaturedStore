@@ -1,16 +1,22 @@
 import { useContext } from "react";
 import { FireContext } from "../components/Firebasecontext";
+import logoR from "../img/logo-round.png";
 
 export default function Account() {
   document.title = "Account Settings";
   const { user } = useContext(FireContext);
   return (
-    <div className='grid justify-items-center h-[90vh] mt-24'>
+    <div className='grid justify-items-center min-h-[90vh] my-24'>
       <div className='grid justify-items-center bg-slate-600 h-fit bg-opacity-[85%] w-[80%] mt-8 rounded-xl shadow-2xl '>
         <div className=' lg:flex p-4 gap-6'>
-          <h1 className='text-4xl p-6 border-b-4 lg:border-r-4 lg:border-b-0 border-green-600'>
-            Account Settings
-          </h1>
+          <div className='border-b-4 lg:border-r-4 lg:border-b-0 border-green-600'>
+            <h1 className='text-4xl p-6 '>Account Settings</h1>
+            <img
+              src={user.photoUrl == undefined ? logoR : user.photoUrl}
+              height='300px'
+              width='300px'
+            />
+          </div>
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -40,12 +46,14 @@ export default function Account() {
               name='password'
               id='changePass'
             />
-
             <button
               type='submit'
               className='opacity-100 m-4 border-black bg-green-800 active:bg-green-800 hover:bg-green-600 border-2 p-2 px-6 rounded-lg  shadow-xl'
             >
               Save Changes
+            </button>
+            <button className='opacity-100 m-4 border-black bg-amber-700 active:bg-amber-800 hover:bg-amber-800 border-2 p-2 px-6 rounded-lg  shadow-xl'>
+              Delete Account
             </button>
           </form>
         </div>

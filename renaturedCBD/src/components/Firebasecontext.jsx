@@ -88,7 +88,7 @@ export function FireProvider({ children }) {
 
   return (
     <FireContext.Provider
-      value={{ signInEmail, createNewUser, auth, signOutUser, user, updateUserProfile }}
+      value={{ signInEmail, createNewUser, signOutUser, updateUserProfile, auth, user }}
     >
       {children}
     </FireContext.Provider>
