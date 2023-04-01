@@ -163,7 +163,7 @@ function Navbar() {
                 to={user == null ? "newUser" : ""}
                 className={"min-w-[100%] h-[100%] " + buttonStyles.toString()}
                 onClick={() => {
-                  user != null ? signOutUser(auth) : console.log(user);
+                  user != null ? signOutUser(auth) : "";
                 }}
               >
                 {" "}

@@ -30,11 +30,14 @@ export default function NewUser() {
       <div className=' bg-slate-600 h-fit bg-opacity-[85%] mt-8 rounded-xl shadow-2xl'>
         <h1 className=' text-center text-4xl p-6'>Create a New Account</h1>
         <form
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault();
             if (check_pass() == true) {
-              createNewUser(emailSignUp.current.value, passSignUp.current.value);
-              nav("account");
+              await createNewUser(emailSignUp.current.value, passSignUp.current.value).then(
+                setTimeout(() => {
+                  nav("/account");
+                }, 1000)
+              );
             } else {
             }
           }}

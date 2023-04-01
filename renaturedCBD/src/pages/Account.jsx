@@ -1,9 +1,10 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { FireContext } from "../components/Firebasecontext";
 import logoR from "../img/logo-round.png";
 
 export default function Account() {
   document.title = "Account Settings";
+
   const { user } = useContext(FireContext);
   return (
     <div className='grid justify-items-center min-h-[90vh] my-24'>
@@ -12,7 +13,8 @@ export default function Account() {
           <div className='border-b-4 lg:border-r-4 lg:border-b-0 border-green-600'>
             <h1 className='text-4xl p-6 '>Account Settings</h1>
             <img
-              src={user.photoUrl == undefined ? logoR : user.photoUrl}
+              // src={user.photoUrl == undefined ? logoR : user.photoUrl}
+              src={logoR}
               height='300px'
               width='300px'
             />

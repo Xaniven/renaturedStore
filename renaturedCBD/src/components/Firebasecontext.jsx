@@ -13,6 +13,10 @@ import { app, db } from "./firebase";
 
 export const FireContext = createContext();
 export function FireProvider({ children }) {
+  ///////////////////////////////////////////////////////////////
+  ////////////////FIREBASE USER/FUNCTIONS///////////////////////
+  /////////////////////////////////////////////////////////////
+
   //Firebase auth instance
   const auth = getAuth(app);
 
@@ -31,11 +35,9 @@ export function FireProvider({ children }) {
         //create DB entry for each create user
         setDoc(doc(db, "Users", userCredential.user.uid), {
           uid: userCredential.user.uid,
-          userType: "user",
+          userType: "basic",
           userName: userCredential.user.displayName,
-          emailAd: userCredential.user.email,
-          metaData: userCredential.user.metadata,
-          orders: {},
+          emailForAds: userCredential.user.email,
         });
         //Send verification email
         sendEmailVerification(auth.currentUser);
@@ -85,6 +87,9 @@ export function FireProvider({ children }) {
         const errorMessage = error.message;
       });
   }
+  ///////////////////////////////////////////////////////////////
+  /////////////////CART FUNCTIONS///////////////////////////////
+  /////////////////////////////////////////////////////////////
 
   return (
     <FireContext.Provider
