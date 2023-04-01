@@ -8,14 +8,13 @@ import {
   updateProfile,
   sendEmailVerification,
 } from "firebase/auth";
+import { getStripePayments, getProducts } from "@stripe/firestore-stripe-payments";
 import { doc, setDoc } from "firebase/firestore";
 import { app, db } from "./firebase";
 
 export const FireContext = createContext();
 export function FireProvider({ children }) {
-  ///////////////////////////////////////////////////////////////
   ////////////////FIREBASE USER/FUNCTIONS///////////////////////
-  /////////////////////////////////////////////////////////////
 
   //Firebase auth instance
   const auth = getAuth(app);
@@ -87,13 +86,33 @@ export function FireProvider({ children }) {
         const errorMessage = error.message;
       });
   }
-  ///////////////////////////////////////////////////////////////
   /////////////////CART FUNCTIONS///////////////////////////////
-  /////////////////////////////////////////////////////////////
+
+  const { cart, setCart } = useState();
+
+  ////////////////////////////Stripe////////////////////////////
+
+  //Connect to stripe account
+  const payments = getStripePayments(app, {
+    productsCollection: "products",
+    customersCollection: "customers",
+  });
+
+  //Get products from stripe
+  async function pullProds() {
+    const products = await getProducts(payments, {
+      includePrices: true,
+      activeOnly: true,
+    });
+    console.log(products);
+    for (const product of products) {
+      console.log(products);
+    }
+  }
 
   return (
     <FireContext.Provider
-      value={{ signInEmail, createNewUser, signOutUser, updateUserProfile, auth, user }}
+      value={{ signInEmail, createNewUser, signOutUser, updateUserProfile, auth, user, pullProds }}
     >
       {children}
     </FireContext.Provider>
