@@ -9,7 +9,7 @@ export default function ErrorPage() {
   return (
     <>
       <div
-        className=' h-[50vh] w-[100vw] text-center flex justify-center p-10 mt-24'
+        className=' min-h-[50vh] w-[100vw] text-center flex justify-center p-10 mt-24'
         id='error-page'
       >
         <div className='w-[75vw] h-fit bg-amber-900 rounded-xl border-[3px] border-green-800 opacity-90 p-12 text-2xl '>

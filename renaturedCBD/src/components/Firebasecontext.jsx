@@ -14,7 +14,7 @@ import { app, db } from "./firebase";
 
 export const FireContext = createContext();
 export function FireProvider({ children }) {
-  ////////////////FIREBASE USER/FUNCTIONS///////////////////////
+  ////////////////FIREBASE USER FUNCTIONS///////////////////////
 
   //Firebase auth instance
   const auth = getAuth(app);
@@ -72,7 +72,6 @@ export function FireProvider({ children }) {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
       });
   }
   //Sign out current user, log it console
@@ -92,6 +91,8 @@ export function FireProvider({ children }) {
 
   ////////////////////////////Stripe////////////////////////////
 
+  const [store, setStore] = useState([]);
+
   //Connect to stripe account
   const payments = getStripePayments(app, {
     productsCollection: "products",
@@ -100,19 +101,32 @@ export function FireProvider({ children }) {
 
   //Get products from stripe
   async function pullProds() {
-    const products = await getProducts(payments, {
+    const i = await getProducts(payments, {
       includePrices: true,
       activeOnly: true,
     });
-    console.log(products);
-    for (const product of products) {
-      console.log(products);
-    }
+    setStore(i);
+    return;
+
+    // console.log(store);
+    // for (const product of products) {
+    //   setStoreItems(product);
+    // }
+    // return;
   }
 
   return (
     <FireContext.Provider
-      value={{ signInEmail, createNewUser, signOutUser, updateUserProfile, auth, user, pullProds }}
+      value={{
+        signInEmail,
+        createNewUser,
+        signOutUser,
+        updateUserProfile,
+        auth,
+        user,
+        pullProds,
+        store,
+      }}
     >
       {children}
     </FireContext.Provider>
