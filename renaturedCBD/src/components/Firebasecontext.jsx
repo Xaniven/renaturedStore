@@ -89,6 +89,8 @@ export function FireProvider({ children }) {
 
   const { cart, setCart } = useState();
 
+  function addToCart() {}
+
   ////////////////////////////Stripe////////////////////////////
 
   const [store, setStore] = useState([]);
@@ -107,13 +109,9 @@ export function FireProvider({ children }) {
     });
     setStore(i);
     return;
-
-    // console.log(store);
-    // for (const product of products) {
-    //   setStoreItems(product);
-    // }
-    // return;
   }
+
+  function checkoutCart([]) {}
 
   return (
     <FireContext.Provider
