@@ -66,12 +66,12 @@ export default function LoginAcc(userState) {
               width='100px'
             />
           </div>
-          <div className={edit ? " grid border-2 border-black" : "hidden"}>
+          {/* <div className={edit ? " grid border-2 border-black" : "hidden"}>
             <label htmlFor='pfp'>
               Upload New Profile Picture <br /> <span className='text-xs'>( 3mb limit )</span>
             </label>
             <input type='file' id='pfp' />
-          </div>
+          </div> */}
           <button
             onClick={() => setEdit(!edit)}
             className='underline text-green-800 hover:text-green-700 cursor-pointer text-xs'

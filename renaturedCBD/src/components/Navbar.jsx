@@ -14,8 +14,9 @@ function Navbar() {
   //State Vars
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+
   //Context var/functions
-  const { auth, signOutUser, user } = useContext(FireContext);
+  const { auth, signOutUser, user, cart } = useContext(FireContext);
   //button sytles var to reduce code clutter
   const buttonStyles =
     "underline underline-offset-[3px] hover:text-green-600 hover:scale-110 text-xl drop-shadow-xl shadow-slate-600  ";
@@ -181,12 +182,12 @@ function Navbar() {
                 />
               </button>
               <span className='absolute bottom-0 m-1 p-1  left-8 h-8 w-8  bg-green-600 text-center rounded-3xl'>
-                99+
+                {/* {cart.length} */}
               </span>
             </div>
           </div>
           <div id='Cart' className={isCartOpen ? "showCartNav h-[100%] flex " : "hideCartNav"}>
-            <h2>Cart:</h2>
+            d
           </div>
           <div
             onClick={() => setIsCartOpen((prev) => !prev)}
@@ -197,7 +198,7 @@ function Navbar() {
                 size='40px'
                 className={"hover:animate-bounce text-center relative  " + buttonStyles.toString()}
               />
-              Cart:0
+              0
             </button>
           </div>
         </div>

@@ -13,6 +13,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { app, db } from "./firebase";
 
 export const FireContext = createContext();
+
 export function FireProvider({ children }) {
   ////////////////FIREBASE USER FUNCTIONS///////////////////////
 
@@ -87,9 +88,15 @@ export function FireProvider({ children }) {
   }
   /////////////////CART FUNCTIONS///////////////////////////////
 
-  const { cart, setCart } = useState();
+  const [cart, setCart] = useState([{ name: "bob", price: "9.99", id: "kjsdh298" }]);
 
-  function addToCart() {}
+  function addToCart(obj) {
+    console.log(...cart);
+    setCart([...cart, obj]);
+    // setCart((prevState) => [...prevState, obj]);
+    // (prevState) => [...prevState, obj]
+    // { name: name, price: price, id: id }
+  }
 
   ////////////////////////////Stripe////////////////////////////
 
@@ -108,10 +115,11 @@ export function FireProvider({ children }) {
       activeOnly: true,
     });
     setStore(i);
+
     return;
   }
 
-  function checkoutCart([]) {}
+  // function checkoutCart([]) {}
 
   return (
     <FireContext.Provider
@@ -124,6 +132,8 @@ export function FireProvider({ children }) {
         user,
         pullProds,
         store,
+        addToCart,
+        cart,
       }}
     >
       {children}
