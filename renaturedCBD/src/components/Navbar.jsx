@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { FireContext } from "./Firebasecontext";
+import { CartContext } from "./CartContext";
 import { IoLeafSharp } from "react-icons/io5";
 import { GiShoppingCart } from "react-icons/gi";
 import "./nav.scss";
@@ -11,12 +12,14 @@ import logoMain from "../img/logo-main.png";
 //Main layout component => renders nav, router outlet, footer components
 
 function Navbar() {
+  const { auth, signOutUser, user } = useContext(FireContext);
+  const { cart } = useContext(CartContext);
+
   //State Vars
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   //Context var/functions
-  const { auth, signOutUser, user, cart } = useContext(FireContext);
   //button sytles var to reduce code clutter
   const buttonStyles =
     "underline underline-offset-[3px] hover:text-green-600 hover:scale-110 text-xl drop-shadow-xl shadow-slate-600  ";
@@ -182,12 +185,31 @@ function Navbar() {
                 />
               </button>
               <span className='absolute bottom-0 m-1 p-1  left-8 h-8 w-8  bg-green-600 text-center rounded-3xl'>
-                {/* {cart.length} */}
+                {cart.length}
               </span>
             </div>
           </div>
-          <div id='Cart' className={isCartOpen ? "showCartNav h-[100%] flex " : "hideCartNav"}>
-            d
+          <div
+            id='Cart-window'
+            className={
+              isCartOpen
+                ? "showCartNav grid-cols-1 gap-2 justify-start overflow-y-scroll "
+                : "hideCartNav"
+            }
+          >
+            {cart.map((item, key) => {
+              return (
+                <div className=' flex border-2 border-green-700 h-[12vh] w-[100%]'>
+                  <div className=''>
+                    <img src={item.photo} alt='' height='100px' width='100px' />
+                  </div>
+                  <div className='p-2 h-100 text-xl'>
+                    <p>{item.name}</p>
+                    <p>$ {item.price}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
           <div
             onClick={() => setIsCartOpen((prev) => !prev)}

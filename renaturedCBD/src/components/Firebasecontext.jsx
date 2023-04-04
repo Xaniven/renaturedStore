@@ -86,17 +86,6 @@ export function FireProvider({ children }) {
         const errorMessage = error.message;
       });
   }
-  /////////////////CART FUNCTIONS///////////////////////////////
-
-  const [cart, setCart] = useState([{ name: "bob", price: "9.99", id: "kjsdh298" }]);
-
-  function addToCart(obj) {
-    console.log(...cart);
-    setCart([...cart, obj]);
-    // setCart((prevState) => [...prevState, obj]);
-    // (prevState) => [...prevState, obj]
-    // { name: name, price: price, id: id }
-  }
 
   ////////////////////////////Stripe////////////////////////////
 
@@ -132,8 +121,6 @@ export function FireProvider({ children }) {
         user,
         pullProds,
         store,
-        addToCart,
-        cart,
       }}
     >
       {children}
@@ -141,4 +128,4 @@ export function FireProvider({ children }) {
   );
 }
 
-export default createContext;
+export default FireContext;
