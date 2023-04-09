@@ -76,6 +76,9 @@ export default function NewUser() {
               </span>
             </label>
             <input required type='checkbox' name='checkbox' id='tosBox' />
+            <br />
+            <label htmlFor='checkbox'>Click here to agree to recive our newsletter. </label>
+            <input required type='checkbox' name='checkbox' id='tosBox' />
           </div>
           <button
             type='submit'

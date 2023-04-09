@@ -1,4 +1,5 @@
 import { IoLeafSharp } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 function Homepage() {
   document.title = "Re:Natured!";
@@ -24,9 +25,9 @@ function Homepage() {
             <div className='flex-col text-center place-items-center  w-fit lg:w-[60vw] bg-slate-400 bg-opacity-50 rounded-xl '>
               <p className=' text-xl pt-4'>Join Our Maillist, Get 25% Off Your First Order!*</p>
               <button className='m-4 border-black bg-green-800 hover:bg-green-600 border-2 p-2 px-6 rounded-lg  shadow-xl '>
-                <div className=' flex '>
+                <Link to='newuser' className=' flex '>
                   <IoLeafSharp size='36px' /> <span className='pt-1'>Join Our Maillist!</span>
-                </div>
+                </Link>
               </button>
               <p className=' opacity-60 text-sm pb-2'>
                 *Subject to{" "}
