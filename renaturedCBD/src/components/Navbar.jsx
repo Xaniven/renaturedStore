@@ -13,7 +13,7 @@ import logoMain from "../img/logo-main.png";
 
 function Navbar() {
   const { auth, signOutUser, user } = useContext(FireContext);
-  const { cart } = useContext(CartContext);
+  const { cart, checkoutSession } = useContext(CartContext);
 
   //State Vars
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -193,10 +193,11 @@ function Navbar() {
             id='Cart-window'
             className={
               isCartOpen
-                ? "showCartNav grid-cols-1 gap-2 justify-start overflow-y-scroll "
+                ? "showCartNav grid-cols-1 gap-2 justify-start overflow-y-scroll"
                 : "hideCartNav"
             }
           >
+            refactor into component
             {cart.map((item, key) => {
               return (
                 <div className=' flex border-2 border-green-700 h-[12vh] w-[100%]'>
@@ -210,6 +211,16 @@ function Navbar() {
                 </div>
               );
             })}
+            <div className='relative h-[100vh] w-[90%]'>
+              <button
+                onClick={() => {
+                  checkoutSession(cart);
+                }}
+                className=' absolute bottom-0 w-[100%] bg-green-600 rounded-xl p-4 mb-6'
+              >
+                Checkout
+              </button>
+            </div>
           </div>
           <div
             onClick={() => setIsCartOpen((prev) => !prev)}

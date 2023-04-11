@@ -10,11 +10,13 @@ export default function ItemComp(props) {
 
   const itemName = props.props.name.toString();
   const itemPrice = (props.props.prices[0].unit_amount / 100).toFixed(2).toString();
+  const pr = props.props.prices[0].id;
   const itemID = props.props.id.toString();
   const pURL = props.props.images;
 
-  const obj = { name: itemName, price: itemPrice, id: itemID, photo: pURL };
+  const obj = { price: pr, quantity: 1 };
 
+  console.log(props);
   return (
     <div
       key={itemID}

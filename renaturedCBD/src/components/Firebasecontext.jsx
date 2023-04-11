@@ -38,6 +38,7 @@ export function FireProvider({ children }) {
           userType: "basic",
           userName: userCredential.user.displayName,
           emailForAds: userCredential.user.email,
+          provider: userCredentials.user.providerData[0].providerId,
         });
         //Send verification email
         sendEmailVerification(auth.currentUser);
