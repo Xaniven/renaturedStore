@@ -9,7 +9,7 @@ import Footer from "./Footer";
 import LoginAcc from "./LoginAcc";
 import logoMain from "../img/logo-main.png";
 
-//Main layout component => renders nav, router outlet, footer components
+//Main layout component => renders nav, router outlet, footer component
 
 function Navbar() {
   const { auth, signOutUser, user } = useContext(FireContext);
@@ -18,6 +18,18 @@ function Navbar() {
   //State Vars
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [cartLoad, setCartLoad] = useState(false);
+
+  // Handle checkout button onClick
+  async function handleCartSubmit() {
+    setCartLoad(true);
+    if (cart.length !== 0) {
+      await checkoutSession(cart);
+      setCartLoad(false);
+    } else {
+      setCartLoad(false);
+    }
+  }
 
   //Context var/functions
   //button sytles var to reduce code clutter
@@ -197,7 +209,8 @@ function Navbar() {
                 : "hideCartNav"
             }
           >
-            refactor into component
+            {/* refactor into component */}
+            {cart.length === 0 ? "Cart is Empty" : ""}
             {cart.map((item, key) => {
               return (
                 <div className=' flex border-2 border-green-700 h-[12vh] w-[100%]'>
@@ -213,12 +226,20 @@ function Navbar() {
             })}
             <div className='relative h-[100vh] w-[90%]'>
               <button
-                onClick={() => {
-                  checkoutSession(cart);
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleCartSubmit();
                 }}
                 className=' absolute bottom-0 w-[100%] bg-green-600 rounded-xl p-4 mb-6'
               >
-                Checkout
+                {!cartLoad ? (
+                  "Checkout"
+                ) : (
+                  <div
+                    class='inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]'
+                    role='status'
+                  ></div>
+                )}
               </button>
             </div>
           </div>

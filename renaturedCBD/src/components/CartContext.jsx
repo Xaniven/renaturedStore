@@ -24,6 +24,7 @@ export function CartProvider({ children }) {
       line_items: cart,
       success_url: "https://GOOGLE.COM",
       cancel_url: "https://BING.COM",
+      expires_at: Math.floor(Date.now() / 1000) + 3600 * 2,
     });
     window.location.assign(session.url);
   }
