@@ -8,6 +8,7 @@ import { Outlet, NavLink, Link } from "react-router-dom";
 import Footer from "./Footer";
 import LoginAcc from "./LoginAcc";
 import logoMain from "../img/logo-main.png";
+import Spinner from "./Spinner";
 
 //Main layout component => renders nav, router outlet, footer component
 
@@ -246,14 +247,7 @@ function Navbar() {
                 }}
                 className=' absolute bottom-0 w-[100%] bg-green-600 rounded-xl p-4 mb-6'
               >
-                {!cartLoad ? (
-                  "Checkout"
-                ) : (
-                  <div
-                    class='inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]'
-                    role='status'
-                  ></div>
-                )}
+                {!cartLoad ? "Checkout" : <Spinner />}
               </button>
             </div>
           </div>
