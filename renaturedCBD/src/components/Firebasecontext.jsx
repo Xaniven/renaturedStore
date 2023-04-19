@@ -120,8 +120,9 @@ export function FireProvider({ children }) {
         updateUserProfile,
         auth,
         user,
-        pullProds,
         store,
+        setStore,
+        payments,
       }}
     >
       {children}

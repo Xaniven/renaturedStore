@@ -1,11 +1,24 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import bgMain from "../img/coffee-1255164.jpg";
 import logoR from "../img/logo-round.png";
 
 export default function Aboutpage() {
-  document.title = "About Us!";
   return (
     <div className='main-container container flex z-0 justify-center min-h-[100vh] max-w-[100vw] relative text-center'>
+      <Helmet>
+        <meta charset='UTF-8' />
+        <link rel='icon' type='image/svg+xml' href='/vite.svg' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <meta name='description' content='About us, here at Renatured Teas & Coffee' />
+        <meta property='og:title' content='About Us🌱' />
+        <meta property='og:description' content='About us, here at Renatured Teas & Coffee' />
+        <meta
+          property='og:image'
+          content='https://ahrefs.com/blog/wp-content/uploads/2019/12/fb-how-to-become-an-seo-expert.png'
+        />
+        <title>About Us🌱</title>
+      </Helmet>
       <img src={bgMain} alt='' className='absolute min-h-[100%] w-[100vw] object-cover' />
       <div className='content container flex flex-col gap-12  p-4 m-18 min-w-[100%] lg:max-w-[80vw] min-h-[auto]  opacity-90  '>
         <div className='flex justify-center p-2 '>

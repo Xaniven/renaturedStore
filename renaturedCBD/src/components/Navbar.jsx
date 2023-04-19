@@ -143,17 +143,31 @@ function Navbar() {
                 About Us
               </NavLink>
             </button>
-            <button className={buttonStyles}>
-              {" "}
-              <NavLink
-                to='store'
-                className={({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? "text-green-600 text-2xl" : ""
-                }
-              >
-                Store
-              </NavLink>
-            </button>
+            <div className='shop-dropdown'>
+              <button className={buttonStyles.toString() + "relative peer h-[100%] w-[100%] top-0"}>
+                Shop
+              </button>
+              <div className='hidden absolute focus-within:block peer-hover:block hover:flex  top-[11vh] w-[auto] h-auto  drop-shadow-lg z-50 p-4 bg-slate-400 rounded-lg'>
+                <div className='flex flex-col p-2 gap-2 text-left'>
+                  <NavLink
+                    to='store/tea'
+                    className={({ isActive, isPending }) =>
+                      isPending ? "pending" : isActive ? "text-green-600 text-2xl" : ""
+                    }
+                  >
+                    Tea
+                  </NavLink>
+                  <NavLink
+                    to='store/coffee'
+                    className={({ isActive, isPending }) =>
+                      isPending ? "pending" : isActive ? "text-green-600 text-2xl" : ""
+                    }
+                  >
+                    Coffee
+                  </NavLink>
+                </div>
+              </div>
+            </div>
           </div>
           {/* center image */}
           <div className='img-wrap flex w-[100%] justify-center'>

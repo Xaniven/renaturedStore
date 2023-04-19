@@ -26,11 +26,25 @@ function App() {
           element: <Aboutpage />,
           errorElement: <ErrorPage />,
         },
+
         {
           path: "store",
-          element: <Storepage />,
+          element: <Storepage tOrCoffee={"Coffee"} />,
           errorElement: <ErrorPage />,
+          children: [
+            {
+              path: "tea",
+              element: <Storepage />,
+              errorElement: <ErrorPage />,
+            },
+            {
+              path: "coffee",
+              element: <Storepage />,
+              errorElement: <ErrorPage />,
+            },
+          ],
         },
+
         {
           path: "newuser",
           element: <NewUser />,

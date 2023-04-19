@@ -16,7 +16,6 @@ export default function ItemComp(props) {
 
   const obj = { price: pr, quantity: 1 };
 
-  console.log(props);
   return (
     <div
       key={itemID}

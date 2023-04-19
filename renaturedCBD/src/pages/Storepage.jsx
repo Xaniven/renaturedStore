@@ -1,17 +1,43 @@
-import { useContext, useLayoutEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FireContext } from "../components/Firebasecontext";
 import ItemComp from "../components/ItemComp";
+import { Helmet } from "react-helmet";
+import { getStripePayments, getProducts } from "@stripe/firestore-stripe-payments";
 
 export default function Storepage() {
-  const { pullProds, store } = useContext(FireContext);
-  document.title = "Shop";
+  const { store, setStore, payments } = useContext(FireContext);
 
-  useLayoutEffect(() => {
+  async function pullProds(tOc) {
+    const i = await getProducts(payments, {
+      includePrices: true,
+      activeOnly: true,
+      // where: [["metadata.type", "==", { tOc }]],
+    });
+    setStore(i);
+
+    return;
+  }
+
+  useEffect(() => {
     pullProds();
   }, []);
 
   return (
     <>
+      <Helmet>
+        <meta charset='UTF-8' />
+        <link rel='icon' type='image/svg+xml' href='/vite.svg' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <meta name='description' content='About us, here at Renatured Teas & Coffee' />
+        <meta property='og:title' content={"Shops"} />
+        <meta property='og:description' content='About us, here at Renatured Teas & Coffee' />
+        <meta
+          property='og:image'
+          content='https://ahrefs.com/blog/wp-content/uploads/2019/12/fb-how-to-become-an-seo-expert.png'
+        />
+        <title>{"Shop " + {}}</title>
+      </Helmet>
+
       <h1 className='lg:text-6xl md:text-4xl text-2xl text-center mt-8 p-2 bg-slate-600 rounded-3xl'>
         <span className='mr-8'>
           <span className='text-green-700'>Re</span>
