@@ -9,7 +9,6 @@ function Homepage() {
       <Helmet>
         <meta charset='UTF-8' />
         <link rel='icon' type='image/svg+xml' href='/vite.svg' />
-        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
         <meta name='description' content='About us, here at Renatured Teas & Coffee' />
         <meta property='og:title' content={"Shops"} />
         <meta property='og:description' content='About us, here at Renatured Teas & Coffee' />

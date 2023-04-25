@@ -38,7 +38,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className='max-w-[100vw] h-[15vh] z-3 bg-slate-500 top-0 border-b-4 border-amber-800 shadow-slate-600 shadow-xl overflow-hidden'>
+      <nav className='max-w-[100vw] h-[15vh] z-3 bg-slate-500 top-0 border-b-4 border-amber-800 shadow-slate-600 shadow-xl overflow-x-hidden'>
         <div className='fs-menu h-[100%] max-w-[100vw] flex justify-between lg:justify-around '>
           <div
             className='Hamburg lg:hidden space-y-2 flex flex-col justify-center pl-4 w-[10vw] h-[15vh]'

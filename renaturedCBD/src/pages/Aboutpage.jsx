@@ -5,11 +5,10 @@ import logoR from "../img/logo-round.png";
 
 export default function Aboutpage() {
   return (
-    <div className='main-container container flex z-0 justify-center min-h-[100vh] max-w-[100vw] relative text-center'>
+    <div className='main-container container flex z-0 justify-center min-h-[100vh] max-w-[100vw] relative text-center overflow-hidden'>
       <Helmet>
         <meta charset='UTF-8' />
         <link rel='icon' type='image/svg+xml' href='/vite.svg' />
-        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
         <meta name='description' content='About us, here at Renatured Teas & Coffee' />
         <meta property='og:title' content='About Us🌱' />
         <meta property='og:description' content='About us, here at Renatured Teas & Coffee' />
