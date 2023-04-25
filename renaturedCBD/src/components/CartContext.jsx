@@ -6,9 +6,11 @@ export const CartContext = createContext();
 export function CartProvider({ children }) {
   /////////////////CART FUNCTIONS///////////////////////////////
   const [cart, setCart] = useState(() => []);
+  const [checkoutCart, setCheckoutCart] = useState(() => []);
 
-  function addToCart(cartItem) {
-    setCart((prevState) => [...prevState, cartItem]);
+  function addToCart(checkoutObj, uiCart) {
+    setCart((prevState) => [...prevState, uiCart]);
+    setCheckoutCart((prevState) => [...prevState, checkoutObj]);
   }
 
   /////////////////STRIPE FUNCTIONS///////////////////////////////
@@ -21,7 +23,7 @@ export function CartProvider({ children }) {
   async function checkoutSession(cart) {
     const session = await createCheckoutSession(payments, {
       mode: "payment",
-      line_items: cart,
+      line_items: checkoutCart,
       success_url: "https://GOOGLE.COM",
       cancel_url: "https://BING.COM",
       expires_at: Math.floor(Date.now() / 1000) + 3600 * 2,

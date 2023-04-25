@@ -14,7 +14,8 @@ export default function ItemComp(props) {
   const itemID = props.props.id.toString();
   const pURL = props.props.images;
 
-  const obj = { price: pr, quantity: 1 };
+  const checkoutObj = { price: pr, quantity: 1 };
+  const uiCart = { name: itemName, price: itemPrice, image: pURL };
 
   return (
     <div
@@ -38,7 +39,7 @@ export default function ItemComp(props) {
           <button
             onClick={(e) => {
               e.preventDefault();
-              addToCart(obj);
+              addToCart(checkoutObj, uiCart);
               // { name: itemName, price: itemPrice, id: itemID }
             }}
             className='w-[100%] bg-green-700 hover:bg-green-800 py-2 mt-2 rounded-md '

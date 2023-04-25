@@ -2,24 +2,24 @@ import { useContext, useEffect, useState } from "react";
 import { FireContext } from "../components/Firebasecontext";
 import ItemComp from "../components/ItemComp";
 import { Helmet } from "react-helmet";
-import { getStripePayments, getProducts } from "@stripe/firestore-stripe-payments";
+import { getProducts } from "@stripe/firestore-stripe-payments";
 
-export default function Storepage() {
+export default function Storepage(itemType) {
   const { store, setStore, payments } = useContext(FireContext);
 
-  async function pullProds(tOc) {
+  async function pullProds() {
     const i = await getProducts(payments, {
       includePrices: true,
       activeOnly: true,
-      // where: [["metadata.type", "==", { tOc }]],
+      // where: [["metadata.type", "==", {  }]],
     });
     setStore(i);
 
     return;
   }
-
   useEffect(() => {
     pullProds();
+    console.log(itemType.itemType);
   }, []);
 
   return (
@@ -35,7 +35,7 @@ export default function Storepage() {
           property='og:image'
           content='https://ahrefs.com/blog/wp-content/uploads/2019/12/fb-how-to-become-an-seo-expert.png'
         />
-        <title>{"Shop " + {}}</title>
+        <title>{"Shop "}</title>
       </Helmet>
 
       <h1 className='lg:text-6xl md:text-4xl text-2xl text-center mt-8 p-2 bg-slate-600 rounded-3xl'>

@@ -32,7 +32,6 @@ function Navbar() {
     }
   }
 
-  //Context var/functions
   //button sytles var to reduce code clutter
   const buttonStyles =
     "underline underline-offset-[3px] hover:text-green-600 hover:scale-110 text-xl drop-shadow-xl shadow-slate-600  ";
@@ -108,7 +107,7 @@ function Navbar() {
                     }
                     onClick={() => setIsNavOpen((prev) => !prev)}
                   >
-                    Store
+                    Shop
                   </NavLink>
                 </li>
               </ul>
@@ -218,28 +217,26 @@ function Navbar() {
           </div>
           <div
             id='Cart-window'
-            className={
-              isCartOpen
-                ? "showCartNav grid-cols-1 gap-2 justify-start overflow-y-scroll"
-                : "hideCartNav"
-            }
+            className={isCartOpen ? "showCartNav grid-cols-1 gap-2 justify-start " : "hideCartNav"}
           >
-            {/* refactor into component */}
-            {cart.length === 0 ? "Cart is Empty" : ""}
-            {cart.map((item, key) => {
-              return (
-                <div className=' flex border-2 border-green-700 h-[12vh] w-[100%]'>
-                  <div className=''>
-                    <img src={item.photo} alt='' height='100px' width='100px' />
+            <div className='w-[100%] p-2 overflow-y-scroll '>
+              {/* refactor into component */}
+              {cart.length === 0 ? "Cart is Empty" : ""}
+              {cart.map((item, key) => {
+                return (
+                  <div className=' flex border-2 border-green-700 h-[12vh] w-[100%]'>
+                    <div className=''>
+                      <img src={item.image} alt='' height='100px' width='100px' />
+                    </div>
+                    <div className='p-2 h-100 text-xl'>
+                      <p>{item.name}</p>
+                      <p>$ {item.price}</p>
+                    </div>
                   </div>
-                  <div className='p-2 h-100 text-xl'>
-                    <p>{item.name}</p>
-                    <p>$ {item.price}</p>
-                  </div>
-                </div>
-              );
-            })}
-            <div className='relative h-[100vh] w-[90%]'>
+                );
+              })}
+            </div>
+            <div className='relative h-[30%] w-[95%] border-amber-800 border-t-4'>
               <button
                 onClick={(e) => {
                   e.preventDefault();

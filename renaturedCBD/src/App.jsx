@@ -29,17 +29,17 @@ function App() {
 
         {
           path: "store",
-          element: <Storepage tOrCoffee={"Coffee"} />,
+          element: <Storepage />,
           errorElement: <ErrorPage />,
           children: [
             {
               path: "tea",
-              element: <Storepage />,
+              element: <Storepage itemType={"tea"} />,
               errorElement: <ErrorPage />,
             },
             {
               path: "coffee",
-              element: <Storepage />,
+              element: <Storepage itemType={"coffee"} />,
               errorElement: <ErrorPage />,
             },
           ],

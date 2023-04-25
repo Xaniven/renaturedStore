@@ -13,12 +13,10 @@ export default function Aboutpage() {
         <meta name='description' content='About us, here at Renatured Teas & Coffee' />
         <meta property='og:title' content='About Us🌱' />
         <meta property='og:description' content='About us, here at Renatured Teas & Coffee' />
-        <meta
-          property='og:image'
-          content='https://ahrefs.com/blog/wp-content/uploads/2019/12/fb-how-to-become-an-seo-expert.png'
-        />
+        <meta property='og:image' content='' />
         <title>About Us🌱</title>
       </Helmet>
+
       <img src={bgMain} alt='' className='absolute min-h-[100%] w-[100vw] object-cover' />
       <div className='content container flex flex-col gap-12  p-4 m-18 min-w-[100%] lg:max-w-[80vw] min-h-[auto]  opacity-90  '>
         <div className='flex justify-center p-2 '>
