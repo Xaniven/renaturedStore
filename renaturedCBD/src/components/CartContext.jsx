@@ -7,10 +7,18 @@ export function CartProvider({ children }) {
   /////////////////CART FUNCTIONS///////////////////////////////
   const [cart, setCart] = useState(() => []);
   const [checkoutCart, setCheckoutCart] = useState(() => []);
+  const [cartTotal, setCartTotal] = useState(0);
 
   function addToCart(checkoutObj, uiCart) {
     setCart((prevState) => [...prevState, uiCart]);
     setCheckoutCart((prevState) => [...prevState, checkoutObj]);
+
+    setCartTotal(Number(uiCart.price) + Number(cartTotal));
+  }
+  function removeFromCart(key) {
+    cart.splice(key, 1);
+    cartTotal.splice(key, 1);
+    checkoutCart.splice(key, 1);
   }
 
   /////////////////STRIPE FUNCTIONS///////////////////////////////
@@ -32,7 +40,7 @@ export function CartProvider({ children }) {
   }
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, checkoutSession }}>
+    <CartContext.Provider value={{ cart, cartTotal, addToCart, removeFromCart, checkoutSession }}>
       {children}
     </CartContext.Provider>
   );

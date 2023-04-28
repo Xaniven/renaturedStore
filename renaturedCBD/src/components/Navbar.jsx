@@ -14,7 +14,7 @@ import Spinner from "./Spinner";
 
 function Navbar() {
   const { auth, signOutUser, user } = useContext(FireContext);
-  const { cart, checkoutSession } = useContext(CartContext);
+  const { cart, checkoutSession, cartTotal, removeFromCart } = useContext(CartContext);
 
   //State Vars
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -27,7 +27,10 @@ function Navbar() {
     if (cart.length !== 0) {
       await checkoutSession(cart);
       setCartLoad(false);
+    } else if (user === null) {
+      alert("Please sign in");
     } else {
+      alert("Cart is empty");
       setCartLoad(false);
     }
   }
@@ -38,7 +41,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className='max-w-[100vw] h-[15vh] z-3 bg-slate-500 top-0 border-b-4 border-amber-800 shadow-slate-600 shadow-xl overflow-x-hidden'>
+      <nav className='max-w-[100vw] h-[15vh] z-3 bg-slate-500 top-0 border-b-4 border-amber-800 shadow-slate-600 shadow-xl overflow-hidden'>
         <div className='fs-menu h-[100%] max-w-[100vw] flex justify-between lg:justify-around '>
           <div
             className='Hamburg lg:hidden space-y-2 flex flex-col justify-center pl-4 w-[10vw] h-[15vh]'
@@ -219,12 +222,21 @@ function Navbar() {
             id='Cart-window'
             className={isCartOpen ? "showCartNav grid-cols-1 gap-2 justify-start " : "hideCartNav"}
           >
-            <div className='w-[100%] p-2 overflow-y-scroll '>
+            <div className='w-[95%] h-[80%] p-2 overflow-y-scroll'>
               {/* refactor into component */}
               {cart.length === 0 ? "Cart is Empty" : ""}
+
               {cart.map((item, key) => {
                 return (
                   <div className=' flex border-2 border-green-700 h-[12vh] w-[100%]'>
+                    <button
+                      onClick={(key) => {
+                        console.log(cart);
+                        removeFromCart(key);
+                      }}
+                    >
+                      Remove
+                    </button>
                     <div className=''>
                       <img src={item.image} alt='' height='100px' width='100px' />
                     </div>
@@ -236,7 +248,8 @@ function Navbar() {
                 );
               })}
             </div>
-            <div className='relative h-[30%] w-[95%] border-amber-800 border-t-4'>
+            <div className='relative  h-[25%] w-[95%] border-amber-800 border-t-4'>
+              <div className='text-2xl lg:text-4xl text-center m-2'>Sub-Total: $ {cartTotal}</div>
               <button
                 onClick={(e) => {
                   e.preventDefault();
