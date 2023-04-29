@@ -5,7 +5,19 @@ import logoR from "../img/logo-round.png";
 export default function Account() {
   document.title = "Account Settings";
 
-  const { user } = useContext(FireContext);
+  const { user, updateUserProfile } = useContext(FireContext);
+  const unChange = document.getElementById("changeuserName");
+  const unEmail = document.getElementById("changeEmail");
+  const unPass = document.getElementById("changePass");
+  function handleAccountUpdate() {
+    if (unChange.value !== "") {
+      updateUserProfile(unChange.value);
+    }
+    if (unEmail.value !== "") {
+    }
+    if (unPass.value !== "") {
+    }
+  }
   if (user != null) {
     return (
       <div className='grid justify-items-center min-h-[90vh] my-24'>
@@ -27,29 +39,18 @@ export default function Account() {
               className='flex flex-col p-6 gap-4 lg:w-[40vw]'
             >
               <label htmlFor='text'>Change Username : {user.displayName}</label>
-              <input
-                className='rounded-lg'
-                required
-                type='userName'
-                name='userName'
-                id='changeuserName'
-              />
+              <input className='rounded-lg' name='userName' id='changeuserName' />
 
               <label htmlFor='email'>Change Email Address: {user.email}</label>
-              <input className='rounded-lg' required type='email' name='email' id='changeEmail' />
+              <input className='rounded-lg' type='email' name='email' id='changeEmail' />
 
               <label htmlFor='password' id='changePass'>
                 Change Password:
               </label>
 
-              <input
-                required
-                className='rounded-lg'
-                type='password'
-                name='password'
-                id='changePass'
-              />
+              <input className='rounded-lg' name='password' id='changePass' />
               <button
+                onClick={() => handleAccountUpdate()}
                 type='submit'
                 className='opacity-100 m-4 border-black bg-green-800 active:bg-green-800 hover:bg-green-600 border-2 p-2 px-6 rounded-lg  shadow-xl'
               >

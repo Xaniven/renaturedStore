@@ -20,6 +20,7 @@ export default function Storepage(itemType) {
   useEffect(() => {
     pullProds();
     console.log(itemType.itemType);
+    return;
   }, []);
 
   return (

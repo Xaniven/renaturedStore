@@ -16,7 +16,7 @@ export default function Aboutpage() {
         <title>About Us🌱</title>
       </Helmet>
 
-      <img src={bgMain} alt='' className='absolute min-h-[100%] w-[100vw] object-cover' />
+      {/* <img src={bgMain} alt='' className='absolute min-h-[100%] w-[100vw] object-cover' /> */}
       <div className='content container flex flex-col gap-12  p-4 m-18 min-w-[100%] lg:max-w-[80vw] min-h-[auto]  opacity-90  '>
         <div className='flex justify-center p-2 '>
           <img src={logoR} height='300px' width='300px' alt='' />

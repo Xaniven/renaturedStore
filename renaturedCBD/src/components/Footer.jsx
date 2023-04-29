@@ -2,8 +2,8 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <section className='relative z-2 h-[250px] max-w-[100vw] bottom-[100%]  p-6 bg-zinc-400 border-t-4 border-amber-800 text-left flex justify-center'>
-      <div className='foot-main flex justify-around w-[100vw] p-4 '>
+    <section className='relative z-2 h-[250px] max-w-[100vw] bottom-[100%]  p-6 bg-zinc-500 border-t-4 border-amber-800 text-left flex justify-center'>
+      <div className='foot-main flex justify-evenly w-[100vw] p-4 '>
         <div className=''>
           Directory:
           <ul className='m-2 cursor-pointer '>
