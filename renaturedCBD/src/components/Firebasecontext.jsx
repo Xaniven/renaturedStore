@@ -98,19 +98,6 @@ export function FireProvider({ children }) {
     customersCollection: "customers",
   });
 
-  //Get products from stripe
-  async function pullProds() {
-    const i = await getProducts(payments, {
-      includePrices: true,
-      activeOnly: true,
-    });
-    setStore(i);
-
-    return;
-  }
-
-  // function checkoutCart([]) {}
-
   return (
     <FireContext.Provider
       value={{

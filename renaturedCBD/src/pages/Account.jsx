@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { FireContext } from "../components/Firebasecontext";
 import logoR from "../img/logo-round.png";
-
+import { updatePassword, updateEmail } from "firebase/auth";
 export default function Account() {
   document.title = "Account Settings";
 
@@ -10,13 +10,16 @@ export default function Account() {
   const unEmail = document.getElementById("changeEmail");
   const unPass = document.getElementById("changePass");
   function handleAccountUpdate() {
-    if (unChange.value !== "") {
+    if (unChange.value !== null) {
       updateUserProfile(unChange.value);
     }
-    if (unEmail.value !== "") {
+    if (unEmail.value !== null) {
+      updateEmail(user, unEmail.value);
     }
-    if (unPass.value !== "") {
+    if (unPass.value !== null) {
+      updatePassword(user, unPass.value);
     }
+    alert("Changes Saved");
   }
   if (user != null) {
     return (
@@ -38,10 +41,10 @@ export default function Account() {
               }}
               className='flex flex-col p-6 gap-4 lg:w-[40vw]'
             >
-              <label htmlFor='text'>Change Username : {user.displayName}</label>
+              <label htmlFor='text'>Current Username : {user.displayName}</label>
               <input className='rounded-lg' name='userName' id='changeuserName' />
 
-              <label htmlFor='email'>Change Email Address: {user.email}</label>
+              <label htmlFor='email'>Current Email Address: {user.email}</label>
               <input className='rounded-lg' type='email' name='email' id='changeEmail' />
 
               <label htmlFor='password' id='changePass'>
