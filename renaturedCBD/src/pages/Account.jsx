@@ -1,7 +1,8 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { FireContext } from "../components/Firebasecontext";
 import logoR from "../img/logo-round.png";
-import { updatePassword, updateEmail } from "firebase/auth";
+import { updatePassword, updateEmail, deleteUser } from "firebase/auth";
+
 export default function Account() {
   document.title = "Account Settings";
 
@@ -20,6 +21,10 @@ export default function Account() {
       updatePassword(user, unPass.value);
     }
     alert("Changes Saved");
+  }
+  function handleDelete() {
+    //add a check to prevent accidental delete
+    deleteUser(user);
   }
   if (user != null) {
     return (
@@ -59,7 +64,10 @@ export default function Account() {
               >
                 Save Changes
               </button>
-              <button className='opacity-100 m-4 border-black bg-amber-700 active:bg-amber-800 hover:bg-amber-800 border-2 p-2 px-6 rounded-lg  shadow-xl'>
+              <button
+                onClick={() => handleDelete()}
+                className='opacity-100 m-4 border-black bg-amber-700 active:bg-amber-800 hover:bg-amber-800 border-2 p-2 px-6 rounded-lg  shadow-xl'
+              >
                 Delete Account
               </button>
             </form>
