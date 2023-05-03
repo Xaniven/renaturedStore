@@ -76,7 +76,10 @@ function Homepage() {
           </section>
         </div>
         <div className='right-side top-0  sticky lg:w-[40vw] h-[100vh] lg:h-[85vh] z-1 lg:z-10'>
-          <spline-viewer url='https://prod.spline.design/PibOZ9DNXlOJ2g2n/scene.splinecode'></spline-viewer>
+          <spline-viewer
+            loading-anim
+            url='https://prod.spline.design/PibOZ9DNXlOJ2g2n/scene.splinecode'
+          ></spline-viewer>
         </div>
       </div>
     </>

@@ -230,8 +230,7 @@ function Navbar() {
                 return (
                   <div className=' flex border-2 border-green-700 h-[12vh] w-[100%]'>
                     <button
-                      onClick={(key) => {
-                        console.log(cart);
+                      onClick={() => {
                         removeFromCart(key);
                       }}
                     >

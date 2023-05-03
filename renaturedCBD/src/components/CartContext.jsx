@@ -16,9 +16,13 @@ export function CartProvider({ children }) {
     setCartTotal(Number(uiCart.price) + Number(cartTotal));
   }
   function removeFromCart(key) {
-    cart.splice(key, 1);
-    cartTotal.splice(key, 1);
-    checkoutCart.splice(key, 1);
+    const newCart = cart;
+    delete newCart[key];
+    const updatedCart = newCart.filter((empty) => {
+      return newCart[key] !== empty;
+    });
+
+    setCart(updatedCart);
   }
 
   /////////////////STRIPE FUNCTIONS///////////////////////////////
