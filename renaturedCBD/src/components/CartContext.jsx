@@ -16,13 +16,25 @@ export function CartProvider({ children }) {
     setCartTotal(Number(uiCart.price) + Number(cartTotal));
   }
   function removeFromCart(key) {
+    //copy cart state
     const newCart = cart;
+    const newCheck = checkoutCart;
+    //update total
+    setCartTotal(Number(cartTotal) - Number(newCart[key].price));
+    //remove items from state copy
     delete newCart[key];
+    delete newCheck[key];
+    //filter deleted items
+    const newCheckout = newCheck.filter((empty) => {
+      return newCheck[key] !== empty;
+    });
+
     const updatedCart = newCart.filter((empty) => {
       return newCart[key] !== empty;
     });
-
+    //set state to filtered copys
     setCart(updatedCart);
+    setCheckoutCart(newCheckout);
   }
 
   /////////////////STRIPE FUNCTIONS///////////////////////////////
