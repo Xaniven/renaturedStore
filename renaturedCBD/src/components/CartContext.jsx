@@ -48,9 +48,11 @@ export function CartProvider({ children }) {
     const session = await createCheckoutSession(payments, {
       mode: "payment",
       line_items: checkoutCart,
+
       success_url: "https://GOOGLE.COM",
-      cancel_url: "https://BING.COM",
+      cancel_url: window.location.origin,
       expires_at: Math.floor(Date.now() / 1000) + 3600 * 2,
+      automatic_tax: true,
     });
     window.location.assign(session.url);
   }

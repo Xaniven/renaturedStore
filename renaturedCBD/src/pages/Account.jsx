@@ -11,13 +11,13 @@ export default function Account() {
   const unEmail = document.getElementById("changeEmail");
   const unPass = document.getElementById("changePass");
   function handleAccountUpdate() {
-    if (unChange.value !== null) {
+    if (unChange.value !== null || unChange.value !== "") {
       updateUserProfile(unChange.value);
     }
-    if (unEmail.value !== null) {
+    if (unEmail.value !== null || unEmail.value !== "") {
       updateEmail(user, unEmail.value);
     }
-    if (unPass.value !== null) {
+    if (unPass.value !== null || unPass.value !== "") {
       updatePassword(user, unPass.value);
     }
     alert("Changes Saved");
@@ -40,12 +40,7 @@ export default function Account() {
                 width='300px'
               />
             </div>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-              }}
-              className='flex flex-col p-6 gap-4 lg:w-[40vw]'
-            >
+            <form className='flex flex-col p-6 gap-4 lg:w-[40vw]'>
               <label htmlFor='text'>Current Username : {user.displayName}</label>
               <input className='rounded-lg' name='userName' id='changeuserName' />
 

@@ -1,6 +1,5 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import bgMain from "../img/coffee-1255164.jpg";
 import logoR from "../img/logo-round.png";
 
 export default function Aboutpage() {
@@ -22,7 +21,7 @@ export default function Aboutpage() {
           <img src={logoR} height='300px' width='300px' alt='' />
         </div>
 
-        <text className=' text-8xl opacity-100'>
+        <p className=' text-8xl'>
           {" "}
           <span className='mr-8'>
             <span className='text-green-700'>Re</span>
@@ -31,7 +30,7 @@ export default function Aboutpage() {
               <span className=' absolute text-3xl'>™</span>
             </span>
           </span>
-        </text>
+        </p>
 
         <section className=' flex flex-col lg:flex-row sm:overflow-ellipsis text-sm lg:text-xl p-6 justify-evenly  w-[100%] h-[fit]  sm:flex break-words  bg-slate-600 rounded-xl'>
           <div className=''>

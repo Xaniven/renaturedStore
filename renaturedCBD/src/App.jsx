@@ -1,14 +1,18 @@
+import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Aboutpage from "./pages/Aboutpage";
-import Homepage from "./pages/Homepage";
 import ErrorPage from "./pages/Errorpage";
-import Storepage from "./pages/Storepage";
-import NewUser from "./components/NewUser";
-import Account from "./pages/Account";
+import Homepage from "./pages/Homepage";
+
+const Aboutpage = lazy(() => import("./pages/Aboutpage"));
+const Storepage = lazy(() => import("./pages/Storepage"));
+const NewUser = lazy(() => import("./components/NewUser"));
+const Account = lazy(() => import("./pages/Account"));
+const Spinner = lazy(() => import("./components/Spinner"));
 
 function App() {
   //Router
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -58,7 +62,12 @@ function App() {
       ],
     },
   ]);
-  return <RouterProvider router={router} />;
+  return (
+    <Suspense fallback={<Spinner />}>
+      {" "}
+      <RouterProvider router={router} fallbackElement={<Spinner />} />{" "}
+    </Suspense>
+  );
 }
 
 export default App;

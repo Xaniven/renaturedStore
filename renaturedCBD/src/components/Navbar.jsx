@@ -1,16 +1,17 @@
-import { useState, useContext } from "react";
+import "./nav.scss";
+import { Outlet, NavLink, Link } from "react-router-dom";
+import { useState, useContext, Suspense } from "react";
 import { FireContext } from "./Firebasecontext";
 import { CartContext } from "./CartContext";
 import { IoLeafSharp } from "react-icons/io5";
 import { GiShoppingCart } from "react-icons/gi";
-import "./nav.scss";
-import { Outlet, NavLink, Link } from "react-router-dom";
 import Footer from "./Footer";
 import LoginAcc from "./LoginAcc";
 import logoMain from "../img/logo-main.png";
 import Spinner from "./Spinner";
 
 //Main layout component => renders nav, router outlet, footer component
+// at some point refactor as layout component with seperate nav comp
 
 function Navbar() {
   const { auth, signOutUser, user } = useContext(FireContext);
@@ -41,7 +42,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className='max-w-[100vw] h-[15vh] z-3 bg-slate-500 top-0 border-b-4 border-amber-800 shadow-slate-600 shadow-xl overflow-hidden'>
+      <nav className='max-w-[100vw] h-[15vh] z-3 bg-slate-500 top-0 border-b-4 border-amber-800 shadow-slate-600 shadow-xl overflow-hidden '>
         <div className='fs-menu h-[100%] max-w-[100vw] flex justify-between lg:justify-around '>
           <div
             className='Hamburg lg:hidden space-y-2 flex flex-col justify-center pl-4 w-[10vw] h-[15vh]'
@@ -72,11 +73,13 @@ function Navbar() {
                   <NavLink
                     to='/'
                     className={({ isActive, isPending }) =>
-                      isPending
-                        ? "pending"
-                        : isActive
-                        ? "text-green-600 text-2xl"
-                        : " hover:bg-green-600 p-2 rounded-lg"
+                      isPending ? (
+                        <Spinner />
+                      ) : isActive ? (
+                        "text-green-600 text-2xl"
+                      ) : (
+                        " hover:bg-green-600 p-2 rounded-lg"
+                      )
                     }
                     onClick={() => setIsNavOpen((prev) => !prev)}
                   >
@@ -87,11 +90,13 @@ function Navbar() {
                   <NavLink
                     to='about'
                     className={({ isActive, isPending }) =>
-                      isPending
-                        ? "pending"
-                        : isActive
-                        ? "text-green-600 text-2xl"
-                        : " hover:bg-green-600 p-2 rounded-lg"
+                      isPending ? (
+                        <Spinner />
+                      ) : isActive ? (
+                        "text-green-600 text-2xl"
+                      ) : (
+                        " hover:bg-green-600 p-2 rounded-lg"
+                      )
                     }
                     onClick={() => setIsNavOpen((prev) => !prev)}
                   >
@@ -102,11 +107,13 @@ function Navbar() {
                   <NavLink
                     to='store'
                     className={({ isActive, isPending }) =>
-                      isPending
-                        ? "pending"
-                        : isActive
-                        ? "text-green-600 text-2xl"
-                        : "hover:bg-green-600 p-2 rounded-lg"
+                      isPending ? (
+                        <Spinner />
+                      ) : isActive ? (
+                        "text-green-600 text-2xl"
+                      ) : (
+                        "hover:bg-green-600 p-2 rounded-lg"
+                      )
                     }
                     onClick={() => setIsNavOpen((prev) => !prev)}
                   >
@@ -130,7 +137,7 @@ function Navbar() {
               <NavLink
                 to='/'
                 className={({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? "text-green-600 text-2xl" : ""
+                  isPending ? <Spinner /> : isActive ? "text-green-600 text-2xl" : ""
                 }
               >
                 Home
@@ -140,7 +147,7 @@ function Navbar() {
               <NavLink
                 to='about'
                 className={({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? "text-green-600 text-2xl" : ""
+                  isPending ? <Spinner /> : isActive ? "text-green-600 text-2xl" : ""
                 }
               >
                 About Us
@@ -155,7 +162,7 @@ function Navbar() {
                   <NavLink
                     to='store/tea'
                     className={({ isActive, isPending }) =>
-                      isPending ? "pending" : isActive ? "text-green-600 text-2xl" : ""
+                      isPending ? <Spinner /> : isActive ? "text-green-600 text-2xl" : ""
                     }
                   >
                     Tea
@@ -163,7 +170,7 @@ function Navbar() {
                   <NavLink
                     to='store/coffee'
                     className={({ isActive, isPending }) =>
-                      isPending ? "pending" : isActive ? "text-green-600 text-2xl" : ""
+                      isPending ? <Spinner /> : isActive ? "text-green-600 text-2xl" : ""
                     }
                   >
                     Coffee
@@ -183,9 +190,14 @@ function Navbar() {
           <div className='right-wrap basis-4/5 hidden lg:flex justify-between p-8 gap-6'>
             <div className='dropdown h-[100%] w-[100%]'>
               <button className={buttonStyles.toString() + "relative peer h-[100%] w-[100%] top-0"}>
-                <Link to={user == null ? "" : "/account"}>
+                <NavLink
+                  className={({ isActive, isPending }) =>
+                    isPending ? <Spinner /> : isActive ? "text-green-600 text-2xl" : ""
+                  }
+                  to={user == null ? "" : "/account"}
+                >
                   {user == null ? "Log-In" : "Account"}
-                </Link>
+                </NavLink>
               </button>
               <div className='hidden absolute focus-within:block peer-hover:block hover:flex right-[15vw] top-[11vh] w-[auto] h-auto  drop-shadow-lg z-50 p-4 bg-slate-400 rounded-lg'>
                 <LoginAcc userState={user} />
@@ -269,13 +281,15 @@ function Navbar() {
                 size='40px'
                 className={"hover:animate-bounce text-center relative  " + buttonStyles.toString()}
               />
-              0
+              {cart.length}
             </button>
           </div>
         </div>
       </nav>
       <div className='App max-w-[100vw]'>
-        <Outlet />
+        <Suspense fallback={<Spinner />}>
+          <Outlet />
+        </Suspense>
       </div>
       <Footer />
     </>
